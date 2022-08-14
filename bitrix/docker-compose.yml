@@ -1,0 +1,39 @@
+version: "3.9"
+networks:
+  default:
+    name: ${PROJECT_NAME}
+services:
+  nginx:
+    restart: "always"
+    build:
+      context: ./docker/nginx
+    ports:
+      - "27016:80"
+    volumes:
+      - ./:/var/www/good_begin:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+  php-fpm:
+    restart: "always"
+    working_dir: '/var/www/${PROJECT_NAME}'
+    build:
+      context: ./docker/php-fpm/73
+    volumes:
+      - ./:/var/www/good_begin
+      - ./docker/php-fpm/73/conf.d:/usr/local/etc/php
+  memcache:
+    restart: "always"
+    image: library/memcached:latest
+    ports:
+      - "11211:11211"
+  mariadb:
+    image: mariadb:latest
+    restart: "always"
+    volumes:
+      - ./docker/db/sql.sql:/docker-entrypoint-initdb.d/sql.sql
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_LOGIN}
+      MARIADB_PASSWORD: ${DB_PWD}
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "33061:3306"
