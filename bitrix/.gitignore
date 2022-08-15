@@ -1,17 +1,22 @@
-*-lock.json
-node_modules/
-.idea/
-.git/
-build/
-cache/
-managed_cache/
-stack_cache/
-upload*/
+# not exclude
+!application/bitrix/php_interface/dbconn.*.php
+!application/bitrix/php_interface/after_connect_d7.*.php
+!application/bitrix/php_interface/after_connect.*.php
+!application/bitrix/.settings.*.php
 
-.settings.php
-dbconn.php
-#application/.htaccess
+# work dirs && files
+application/bitrix/
+node_modules
+build
+upload
 
+# core files
+application/bitrix/php_interface/dbconn.php
+application/bitrix/php_interface/after_connect_d7.php
+application/bitrix/php_interface/after_connect.php
+application/bitrix/.settings.php
+
+# main files
 robots.txt
 .htaccess
 .idea
@@ -25,6 +30,9 @@ Thumbs.db
 sitemap*.xml
 *.txt
 test*/
+!test_dev
 yandex_*.html
 *.7z
-backup/
+
+# individual project excludes
+/bitrix/[^/]*\.php$
