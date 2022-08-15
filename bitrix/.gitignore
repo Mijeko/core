@@ -6,22 +6,25 @@ build/
 cache/
 managed_cache/
 stack_cache/
-uploads/
-upload/
+upload*/
 
 .settings.php
 dbconn.php
 #application/.htaccess
 
-*.zip
-*.rar
-*.sql
 robots.txt
+.htaccess
+.idea
+*.sql
 *.log
-backup/
-
-phpMyAdmin/
-test/
-home/
-assets/
+*.rar
+*.zip
+*.tar
 *.tar.gz
+Thumbs.db
+sitemap*.xml
+*.txt
+test*/
+yandex_*.html
+*.7z
+backup/
