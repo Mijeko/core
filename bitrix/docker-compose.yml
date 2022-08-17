@@ -10,15 +10,15 @@ services:
     ports:
       - "27016:80"
     volumes:
-      - ./:/var/www/good_begin:ro
+      - ./:/var/www/site:ro
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
   php-fpm:
     restart: "always"
-    working_dir: '/var/www/${PROJECT_NAME}'
+    working_dir: '/var/www/site'
     build:
       context: ./docker/php-fpm/73
     volumes:
-      - ./:/var/www/good_begin
+      - ./:/var/www/site
       - ./docker/php-fpm/73/conf.d:/usr/local/etc/php
   memcache:
     restart: "always"
