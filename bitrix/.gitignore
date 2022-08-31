@@ -9,6 +9,7 @@ application/bitrix/
 node_modules
 build
 upload
+backup
 
 # core files
 application/bitrix/php_interface/dbconn.php
