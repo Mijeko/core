@@ -1,0 +1,9 @@
+logs/
+logs/**/*
+logs/*
+*.log
+data/
+.env
+
+!.create
+!**/.create
