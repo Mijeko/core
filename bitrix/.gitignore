@@ -8,8 +8,9 @@
 application/bitrix/
 node_modules
 build
-upload
-backup
+upload*
+backup*
+vendor
 
 # core files
 application/bitrix/php_interface/dbconn.php
@@ -26,7 +27,8 @@ robots.txt
 *.rar
 *.zip
 *.tar
-*.tar.gz
+*.gz
+*.*.gz
 Thumbs.db
 sitemap*.xml
 *.txt
