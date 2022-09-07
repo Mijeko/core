@@ -1,0 +1,6 @@
+@import 'node_modules/air-datepicker/dist/css/datepicker';
+
+// bootstrap modal conflict
+.datepicker {
+  z-index: 99999999;
+}

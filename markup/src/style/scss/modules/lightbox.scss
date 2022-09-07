@@ -1,0 +1,18 @@
+@import 'node_modules/lightbox2/dist/css/lightbox';
+
+
+.lb-nav a.lb-prev {
+  background: url(../../images/prev.png) left 48% no-repeat;
+}
+
+.lb-data .lb-close {
+  background: url(../../images/close.png) top right no-repeat;
+}
+
+.lb-cancel {
+  background: url(../../images/loading.gif) no-repeat
+}
+
+.lb-nav a.lb-next {
+  background: url(../../images/next.png) right 48% no-repeat;
+}
