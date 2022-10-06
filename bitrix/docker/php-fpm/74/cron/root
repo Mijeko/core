@@ -1,0 +1,4 @@
+* * * * * php /var/www/site/application/local/modules/cp.sinar/cron/clean_product_to_discount.php
+* * * * * php /var/www/site/application/local/modules/cp.sinar/cron/cron_seasonality.php
+* * * * * php /var/www/site/application/local/modules/cp.sinar/cron/transfer_product_to_discount.php
+* * * * * php /var/www/site/application/local/modules/cp.sinar/cron/stickers.php

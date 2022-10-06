@@ -1,7 +1,9 @@
-FROM php:7.1.33-fpm
+FROM php:7.4.0-fpm
 
 RUN apt-get update -y
-RUN apt-get install -y git \
+RUN apt-get install sudo
+RUN sudo apt-get update  -y
+RUN sudo apt-get install -y --fix-missing git \
     software-properties-common \
     mc \
     sudo \
@@ -26,11 +28,13 @@ RUN apt-get install -y git \
     memcached \
     default-mysql-client \
     libmagickwand-dev \
+    libwebp-dev \
     unzip \
     libzip-dev \
-    zip
+    zip \
+    apache2-utils
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install bcmath pdo pdo_mysql mysqli
@@ -38,6 +42,9 @@ RUN docker-php-ext-install bcmath pdo pdo_mysql mysqli
 # install memcache by pecl
 RUN pecl install memcached
 RUN docker-php-ext-enable memcached
+
+# настройка почты
+RUN sudo sendmailconfig
 
 # install memcache
 # https://serverfault.com/questions/65092/unable-to-load-memcache-so-extension
@@ -53,3 +60,20 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN sudo mv composer.phar /usr/local/bin/composer
 #composer install -end
+
+# cron's works
+# Add crontab file in the cron directory
+#ADD cron/root /etc/cron.d/hello-cron
+
+# Give execution rights on the cron job
+#RUN chmod 0644 /etc/cron.d/hello-cron
+
+# Apply cron job
+#RUN crontab /etc/cron.d/hello-cron
+
+# Create the log file to be able to run tail
+#RUN touch /var/log/cron.log
+
+# Run the command on container startup
+#CMD cron && tail -f /var/log/cron.log
+#CMD cron
