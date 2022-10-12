@@ -1,0 +1,34 @@
+stages:
+  - pull
+  - test
+  - build
+  - deploy
+
+Pulling:
+  stage: pull
+  script:
+    - echo "Pull site"
+
+Testing:
+  stage: test
+  script:
+    - echo "Test site"
+
+Build:
+  image:
+    name: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - echo "Build site"
+#    - docker login -u="${DOCKER_LOGIN}" -p="${DOCKER_PASSWORD}" registry-1.docker.io
+    - docker login $CI_REGISTRY -u gitlab+deploy-token-1413323 -p R2GhHxHGF3ny4AUtv9ug
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - docker push "$CI_REGISTRY_IMAGE${tag}"
+    - docker-compose build
+
+Deploying:
+  stage: deploy
+  script:
+    - echo "Deploy site"
