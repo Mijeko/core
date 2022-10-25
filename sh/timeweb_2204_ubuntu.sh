@@ -32,18 +32,3 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 #sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
-#setup kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-kubectl version --client --output=yaml
-
-#setup minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-sudo dpkg -i minikube_latest_amd64.deb
-alias kubectl="minikube kubectl --"
-
-#выполнить если будет ошибка docker.sock not connection
-#sudo setfacl --modify user:<user name or ID>:rw /var/run/docker.sock
-
-minikube start --force
