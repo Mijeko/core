@@ -1,0 +1,21 @@
+Если деплоймент тяжолый то запулить
+minikube ssh docker pull user/imageName:tag
+
+# для VBOX дать доступ юзеру на общие папки
+sudo usermod -aG vboxsf user
+
+#выполнить если будет ошибка docker.sock not connection
+#sudo setfacl --modify user:<user name or ID>:rw /var/run/docker.sock
+#sudo setfacl --modify user:dev:rw /var/run/docker.sock
+#sudo setfacl --modify user:root:rw /var/run/docker.sock
+
+# для VBOX дать доступ юзеру на общие папки
+sudo usermod -aG vboxsf dev
+
+# id_rsa permisssion denied
+chmod 600 /root/.ssh/id_rsa
+
+kubectl create deployment sinar-php --image=smalljedi/sinarphp:latest
+kubectl create deployment sinar-nginx --image=smalljedi/sinarnginx:latest
+
+minikube ssh docker pull smalljedi/sinarphp:latest
